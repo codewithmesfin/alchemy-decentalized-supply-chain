@@ -92,7 +92,9 @@ function Form() {
 
     return (
         <>
-            <div className="shadow border border-gray-100 rounded">
+            <div className="shadow border border-gray-100 rounded" data-aos="fade-up" 
+             data-aos-offset="300"
+             data-aos-easing="ease-in-sine">
                 <div className="p-5">
                     <div className="flex justify-between items-center space-x-3">
                         <InputField
