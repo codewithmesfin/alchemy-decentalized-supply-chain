@@ -14,8 +14,6 @@
 2. Frontend or Script
 * Create a basic frontend, which displays the items as serial numbers along with their status, and allows users to order new items and cancel the ordered items. Connect the smart contract with the frontend using Ethers.js.
 
-Include a readme file
-
 
 ...............
 
