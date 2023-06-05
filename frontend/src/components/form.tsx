@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import InputField from "./InputField";
 import Button from "./button";
 import { ethers } from "ethers";
+//ln -s ../../smart-contract/artifacts/contracts/SupplyChain.sol/SupplyChain.json node_modules/SupplyChain.json
 import SupplyChain from "SupplyChain.json";
 //deployed to Contract Address
 const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";

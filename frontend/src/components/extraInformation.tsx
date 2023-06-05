@@ -3,7 +3,7 @@ import React from 'react'
 export default function ExtraInformation() {
     return (
         <>
-            <div className="md:flex md:space-x-10 items-center">
+            <div className="md:flex md:space-x-10 items-center p-5 md:p-0 mb-16">
                 <div className='w-full md:w-1/2'>
                     <img src="/img3.jpeg" alt=""
                         className="rounded object-cover h-full w-full max-h-[350px] md:max-w-1/2"

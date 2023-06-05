@@ -10,6 +10,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Getting Started
 To run the project, first add a symbolic link to the smart contract's ABI file:
 Make sure the `smart contract` code is already setuped and run:
+##### `cd frontend`
 ##### `ln -s ../../smart-contract/artifacts/contracts/SupplyChain.sol/SupplyChain.json node_modules/SupplyChain.json`
 
 Then install the dependencies:

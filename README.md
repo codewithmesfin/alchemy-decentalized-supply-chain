@@ -13,8 +13,6 @@
     * the correct status of item is reflected after updating it
 2. Frontend or Script
 * Create a basic frontend, which displays the items as serial numbers along with their status, and allows users to order new items and cancel the ordered items. Connect the smart contract with the frontend using Ethers.js.
-OR
-* Write a separate script with Ethers.js to interact with the smart contract functions.
 
 Include a readme file
 
@@ -44,6 +42,7 @@ Then install the dependencies:
 
 To run the project, first add a symbolic link to the smart contract's ABI file:
 Make sure the `smart contract` code is already setuped and run:
+##### `cd frontend`
 ##### `ln -s ../../smart-contract/artifacts/contracts/SupplyChain.sol/SupplyChain.json node_modules/SupplyChain.json`
 
 
