@@ -20,7 +20,7 @@
 ## Project Setup
 Clone the project from git
 
-`git clone https://github.com/sciemesfin/supply-chain-dApp.git`
+`https://github.com/sciemesfin/alchemy-decentalized-supply-chain.git`
 
 
 ## 1. Frontend source code

@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 //ln -s ../../smart-contract/artifacts/contracts/SupplyChain.sol/SupplyChain.json node_modules/SupplyChain.json
 import SupplyChain from "SupplyChain.json";
 //deployed to Contract Address
-const contractAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+const contractAddress = "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0";
 const contractABI = SupplyChain.abi
 
 type Item = {
@@ -21,8 +21,8 @@ function Form() {
 
     async function orderItem() {
         try {
-            // const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const provider = new ethers.providers.JsonRpcProvider();
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            // const provider = new ethers.providers.JsonRpcProvider();
             await window.ethereum.request({ method: "eth_requestAccounts" });
             const signer = provider.getSigner();
             const contract = new ethers.Contract(contractAddress, contractABI, signer);
