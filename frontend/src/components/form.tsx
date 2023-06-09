@@ -3,7 +3,7 @@ import { ethers } from 'ethers';
 import detectEthereumProvider from '@metamask/detect-provider';
 
 //ln -s ../../smart-contract/artifacts/contracts/SupplyChain.sol/SupplyChain.json node_modules/SupplyChain.json
-import SupplyChainABI from "../SupplyChain.json";
+import SupplyChainABI from "SupplyChain.json";
 
 import InputField from './InputField';
 import Button from './button';
