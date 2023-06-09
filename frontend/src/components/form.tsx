@@ -3,7 +3,7 @@ import { ethers } from 'ethers';
 import detectEthereumProvider from '@metamask/detect-provider';
 
 //ln -s ../../smart-contract/artifacts/contracts/SupplyChain.sol/SupplyChain.json node_modules/SupplyChain.json
-import SupplyChainABI from "SupplyChain.json";
+import SupplyChainABI from "../SupplyChain.json";
 
 import InputField from './InputField';
 import Button from './button';
@@ -21,15 +21,12 @@ function SupplyChain() {
   useEffect(() => {
     const initializeMetaMask = async () => {
       const provider: any = await detectEthereumProvider();
-
       if (provider) {
         await provider.request({ method: 'eth_requestAccounts' });
 
         const ethersProvider = new ethers.providers.Web3Provider(provider);
         const signer = ethersProvider.getSigner();
-
         const supplyChainContract = new ethers.Contract(contractAddress, SupplyChainABI.abi, signer);
-
         // Update the contract instance with the new signer
         setSupplyChainContract(supplyChainContract);
       } else {
@@ -46,21 +43,18 @@ function SupplyChain() {
     if (supplyChainContract) {
       loadItems();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [supplyChainContract]);
 
   const loadItems = async () => {
     try {
       setLoading(true);
-
       const count = await supplyChainContract.getItemCount();
       const itemsArray: any = [];
-
       for (let i = 0; i < count.toNumber(); i++) {
         const item = await supplyChainContract.getItem(i);
         itemsArray.push(item);
       }
-
       setItems(itemsArray);
       setLoading(false);
       setItemName("")
@@ -74,7 +68,6 @@ function SupplyChain() {
     try {
       const tx = await supplyChainContract.orderItem(itemName);
       await tx.wait();
-
       console.log('Item ordered successfully!');
       loadItems();
     } catch (error) {
@@ -86,7 +79,6 @@ function SupplyChain() {
     try {
       const tx = await supplyChainContract.cancelItem(id);
       await tx.wait();
-
       console.log('Item cancelled successfully!');
       loadItems();
     } catch (error) {
@@ -243,65 +235,63 @@ function SupplyChain() {
                   No items to display
                 </td>
               </tr>
-            ) : 
-            (
-              items
-              .sort((a:any,b:any)=>b.id-a.id)
-              .map((item: any, index: number) => (
-                <tr className="hover:bg-gray-50" key={index}>
-                  <th className="flex gap-3 px-6 py-2 font-normal text-gree-900">
-                    {`${item.id}`}
-                  </th>
-                  <td
-                    className="px-6 py-2 cursor-pointer"
-                    onClick={() => setItemDetails(item)}
-                  >
-                    {item.name}
-                  </td>
-                  <td className="px-6 py-2">
-                    <span
-                      className={`inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold ${
-                        item.status === 3
-                          ? 'text-red-600'
-                          : 'text-green-600'
-                      }`}
-                    >
-                      <span
-                        className={`h-1.5 w-1.5 rounded-full  ${
-                          item.status === 3
-                            ? 'bg-red-600'
-                            : 'bg-green-600'
-                        }`}
-                      />
-                      {getStatusText(item.status)}
-                    </span>
-                  </td>
-                  <td className="px-6 py-2">
-                    {displayPartialAddress(item.orderedBy)}
-                  </td>
-                  <td className="px-6 py-2">
-                    {displayPartialAddress(item.approvedBy)}
-                  </td>
-                  <td className="px-6 py-2">
-                    {displayPartialAddress(item.deliveredTo)}
-                  </td>
-                  <td className="px-6 py-2 text-center">
-                  <div className="flex justify-end space-x-3 gap-4">
-                    {item.status === 0 && (
-                      <>
-                        
-                          <button className='text-red-600' onClick={() => cancelItem(item.id)}>Cancel</button>
-                          <button className='text-green-600' onClick={() => approveItem(item.id)}>Approve</button>
-                      </>
-                    )}
-                    {item.status === 1 && (
-                      <button className='text-blue-600' onClick={() => shipItem(item.id)}>Ship Item</button>
-                    )}
-                    </div>
-                  </td>
-                </tr>
-              ))
-            )}
+            ) :
+              (
+                items
+                  .sort((a: any, b: any) => b.id - a.id)
+                  .map((item: any, index: number) => (
+                    <tr className="hover:bg-gray-50" key={index}>
+                      <th className="flex gap-3 px-6 py-2 font-normal text-gree-900">
+                        {`${item.id}`}
+                      </th>
+                      <td
+                        className="px-6 py-2 cursor-pointer"
+                        onClick={() => setItemDetails(item)}
+                      >
+                        {item.name}
+                      </td>
+                      <td className="px-6 py-2">
+                        <span
+                          className={`inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold ${item.status === 3
+                              ? 'text-red-600'
+                              : 'text-green-600'
+                            }`}
+                        >
+                          <span
+                            className={`h-1.5 w-1.5 rounded-full  ${item.status === 3
+                                ? 'bg-red-600'
+                                : 'bg-green-600'
+                              }`}
+                          />
+                          {getStatusText(item.status)}
+                        </span>
+                      </td>
+                      <td className="px-6 py-2">
+                        {displayPartialAddress(item.orderedBy)}
+                      </td>
+                      <td className="px-6 py-2">
+                        {displayPartialAddress(item.approvedBy)}
+                      </td>
+                      <td className="px-6 py-2">
+                        {displayPartialAddress(item.deliveredTo)}
+                      </td>
+                      <td className="px-6 py-2 text-center">
+                        <div className="flex justify-end space-x-3 gap-4">
+                          {item.status === 0 && (
+                            <>
+
+                              <button className='text-red-600' onClick={() => cancelItem(item.id)}>Cancel</button>
+                              <button className='text-green-600' onClick={() => approveItem(item.id)}>Approve</button>
+                            </>
+                          )}
+                          {item.status === 1 && (
+                            <button className='text-blue-600' onClick={() => shipItem(item.id)}>Ship Item</button>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+              )}
           </tbody>
         </table>
       </div>
